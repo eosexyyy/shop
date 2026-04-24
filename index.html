@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murphy Store</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #fff);
+            color: var(--tg-theme-text-color, #000);
+            margin: 0; padding: 15px;
+        }
+        .header { text-align: center; margin-bottom: 20px; }
+        .product-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            /* Пока нет фото, будет серое поле */
+            background: #eee; 
+        }
+        .btn {
+            display: inline-block;
+            background: #2ea6ff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Murphy Shop</h1>
+        <p>Кристаллы и порошки премиум качества</p>
+    </div>
+
+    <div id="catalog">
+        <!-- ТОВАР 1 -->
+        <div class="product-card">
+            <!-- Чтобы добавить фото, замените 'src' на путь к картинке -->
+            <img src="https://via.placeholder.com/200" alt="Порошок Murphy">
+            <h3>Порошок Murphy Professional</h3>
+            <p>Идеальная чистота и аромат.</p>
+            <div class="btn" onclick="buyItem('Порошок')">Заказать</div>
+        </div>
+
+        <!-- ТОВАР 2 -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200" alt="Кристаллы Murphy">
+            <h3>Кристаллы Murphy Bloom</h3>
+            <p>Уникальная формула для блеска.</p>
+            <div class="btn" onclick="buyItem('Кристаллы')">Заказать</div>
+        </div>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Расширить на весь экран
+
+        function buyItem(item) {
+            // Отправляет данные обратно в бота
+            tg.sendData("Заказ: " + item);
+            tg.close(); // Закрыть приложение после заказа
+        }
+    </script>
+</body>
+</html>
